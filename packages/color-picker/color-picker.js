@@ -7,7 +7,7 @@ selectColor = function (id, e) {
   var context = canvas.getContext('2d');
   var rgba = context.getImageData(pos.x,pos.y,1,1).data;
   console.log('getImageData: ',rgba);
-  Session.set('pickerRGBA', rgba.toString());
+  Session.set('pickerRGBA', rgba.join());
   var hex = rgbToHex(rgba[0],rgba[1],rgba[2]);
   Session.set('pickerHex', hex);
 };
@@ -43,8 +43,5 @@ findPos = function (canvas, evt) {
 };
 
 rgbToHex = function (r, g, b) {
-  if (r > 255 || g > 255 || b > 255) {
-    Meteor.throw('Invalid color component');
-  }
-  return '#'+('000000' + ((r << 16) | (g << 8) | b).toString(16)).slice(-6);
+  return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
 };
