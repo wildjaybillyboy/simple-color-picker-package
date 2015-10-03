@@ -1,0 +1,19 @@
+<head>
+  <title>test</title>
+</head>
+
+<body>
+  <h1>Simple color picker</h1>
+  Click or touch the gradient to get the color values
+  {{> pick}}
+  <footer>
+    <hr>
+    <p>Orin Shigeoka 2015</p>
+  </footer>
+</body>
+
+<template name="pick">
+  <p>hex: {{hex}}</p>
+  <p>rgba: {{rgba}}</p>
+  <canvas id="picker" width='1000em' height='25em'></canvas>
+</template>
