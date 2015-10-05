@@ -7,7 +7,7 @@ selectColor = function (id, e) {
   var context = canvas.getContext('2d');
   var rgba = context.getImageData(pos.x,pos.y,1,1).data;
   console.log('getImageData: ',rgba);
-  Session.set('pickerRGBA', rgba.join());
+  Session.set('pickerRGBA', rgba.join(","));
   var hex = rgbToHex(rgba[0],rgba[1],rgba[2]);
   Session.set('pickerHex', hex);
 };
@@ -29,6 +29,17 @@ gradientCanvas = function (id) {
   context.fillStyle = grd;
   context.fill();
 };
+
+//safari
+if (typeof Uint8ClampedArray.prototype.join === 'undefined') {
+    Uint8ClampedArray.prototype.join = function (sep) {
+        str = this[0].toString();
+        for (i = 1; i < this.length; i++) {
+            str += sep+this[i].toString();
+        }
+        return str;
+    };
+}
 
 findPos = function (canvas, evt) {
   console.log('findPos canvas ',canvas);
