@@ -1,6 +1,6 @@
 // Write your package code here!
 selectColor = function (id, e) {
-  console.log('clicked #picker');
+  console.log('clicked #',id);
   var canvas = document.getElementById(id);
   var pos = findPos(canvas, e);
   console.log('x ',pos.x,' y ',pos.y);
@@ -15,8 +15,8 @@ selectColor = function (id, e) {
 gradientCanvas = function (id) {
   var canvas = document.getElementById(id);
   var context = canvas.getContext('2d');
-  context.rect(0,0,canvas.width, canvas.height);
-  var grd = context.createLinearGradient(0,0,canvas.width,canvas.height);
+/*  context.rect(0,0,canvas.width, canvas.height*0.1);
+  var grd = context.createLinearGradient(0,0,canvas.width,0);
 
   grd.addColorStop(0, 'red');
   grd.addColorStop(0.15, 'yellow');
@@ -27,7 +27,16 @@ gradientCanvas = function (id) {
   grd.addColorStop(1.0, 'red');
 
   context.fillStyle = grd;
-  context.fill();
+  context.fill();*/
+
+  var img = new Image();
+  HTTP.get('https://upload.wikimedia.org/wikipedia/commons/7/72/Colormap.png', function (error,result) {
+      if (!error) {
+          console.log('result: ',result);
+          img.src = result.content;
+          context.drawImage(img, 0, 0);
+      }
+  });
 };
 
 //safari

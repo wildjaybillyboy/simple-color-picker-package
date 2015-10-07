@@ -12,7 +12,7 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.2.0.2');
-  api.use(['ecmascript', 'tracker']);
+  api.use(['ecmascript', 'tracker', 'http']);
   api.addFiles('color-picker.js');
   api.export(['selectColor', 'gradientCanvas'], 'client');
 });

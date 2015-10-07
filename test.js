@@ -21,5 +21,5 @@ if (Meteor.isClient) {
     this.autorun (function () {
       gradientCanvas('picker');
     });
-  });
+});
 }
